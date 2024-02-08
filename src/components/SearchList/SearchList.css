@@ -1,0 +1,66 @@
+.searchInput {
+  background-image: url('../../assets/searchicon.png');
+  background-size: 18px;
+  background-position: 16px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 46px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0 14rem;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: scroll;
+  max-height: 325px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.list li a {
+  border-top: 1px solid #ddd;
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 18px;
+  color: black;
+  display: block;
+  animation: fadeIn 0.5s ease-in-out;
+
+}
+
+.list li a:hover {
+  background-color: #eee;
+}
+
+.pokemonItem{
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokemonInfo {
+  font-size: small;
+  color: gray;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

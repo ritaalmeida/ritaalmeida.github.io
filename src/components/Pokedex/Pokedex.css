@@ -1,0 +1,20 @@
+.pokedex {
+  height: 100vh;
+  background-image: url('../../assets/body_bg.png');
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 14rem 0 14rem;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo{
+  width: 400px;
+}
+
+.pokemonsSection{
+  padding-top: 8rem;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
