@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
-import { usePokemonById, usePokemonQuery } from "../../hooks";
-import { SearchList } from "../SearchList";
-import { PokemonCard } from "../PokemonCard";
-import { LoadingCard } from "../LoadingCard";
-import logo from "../../assets/logo.png";
-import "./Pokedex.css";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from 'react';
+import { usePokemonQuery } from '../../hooks';
+import SearchList from '../SearchList';
+import PokemonCard from '../PokemonCard';
+import logo from '../../assets/logo.png';
+import './Pokedex.css';
 
 export const Pokedex = () => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [selectedPokemon, setSelectedPokemon] = useState<number>();
   const [requestIds, setRequestIds] = useState<number[]>([]);
-  const [action, setAction] = useState<"previous" | "next">();
 
   const { data } = usePokemonQuery(searchText);
 
   const handleSelectPokemon = (id: number) => {
-    setSearchText("");
+    setSearchText('');
     setSelectedPokemon(id);
   };
 
@@ -30,11 +27,10 @@ export const Pokedex = () => {
   }, [selectedPokemon]);
 
   const handleClick = (index: number) => {
-    const action = index === 0 ? "previous" : "next";
-    if (index !== 1) setAction(action);
+    const action = index === 0 ? 'previous' : 'next';
 
-    if (action?.length) {
-      if (action === "next") {
+    if (index !== 1) {
+      if (action === 'next') {
         setSelectedPokemon((selectedPokemon as number) + 1);
       } else {
         setSelectedPokemon((selectedPokemon as number) - 1);
@@ -56,10 +52,10 @@ export const Pokedex = () => {
           {requestIds &&
             requestIds.map((id, index) => (
               <PokemonCard
+                key={id}
                 pokemonId={id}
                 slideIndex={index}
                 handleClick={() => handleClick(index)}
-                action={action}
               />
             ))}
         </div>
@@ -67,3 +63,5 @@ export const Pokedex = () => {
     </div>
   );
 };
+
+export default Pokedex;

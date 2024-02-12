@@ -4,9 +4,9 @@ import {
   SetStateAction,
   useEffect,
   useState,
-} from "react";
-import "./SearchList.css";
-import { Pokemon } from "../../interfaces";
+} from 'react';
+import './SearchList.css';
+import { Pokemon } from '../../interfaces';
 
 export interface SearchListProps {
   searchText: string;
@@ -21,7 +21,7 @@ export const SearchList = ({
   pokemons,
   handleSelectPokemon,
 }: SearchListProps) => {
-  const [, setDebouncedInputValue] = useState("");
+  const [, setDebouncedInputValue] = useState('');
 
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {

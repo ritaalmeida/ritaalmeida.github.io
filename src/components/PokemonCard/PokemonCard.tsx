@@ -1,23 +1,18 @@
-import { Pokemon } from "pokenode-ts";
-import classNames from "classnames";
-import "./PokemonCard.css";
-import { usePokemonById } from "../../hooks";
-import { LoadingCard } from "../LoadingCard";
-import Card from "../Card/Card";
+import classNames from 'classnames';
+import './PokemonCard.css';
+import { usePokemonById } from '../../hooks';
+import LoadingCard from '../LoadingCard';
+import Card from '../Card';
 
 interface PokemonCardProps {
   pokemonId: number;
   handleClick: () => void;
-  className?: string;
-  action?: "next" | "previous";
   slideIndex: number;
 }
 
 export const PokemonCard = ({
   pokemonId,
   handleClick,
-  className,
-  action,
   slideIndex,
 }: PokemonCardProps) => {
   const { data: pokemon, isLoading } = usePokemonById({ id: pokemonId });
@@ -32,22 +27,19 @@ export const PokemonCard = ({
   return (
     <Card onClick={handleClick} selectable={slideIndex !== 1}>
       <img
-        className={classNames("cardImage", {
-          ["cardImageSelectable"]: selectable,
+        className={classNames('cardImage', {
+          cardImageSelectable: selectable,
         })}
         src={sprites?.front_default || undefined}
         alt="Avatar"
-        onClick={handleClick}
       />
       <div
-        className={classNames("container", {
-          ["selectableContainer"]: selectable,
+        className={classNames('container', {
+          selectableContainer: selectable,
         })}
       >
         <div className="title">
-          <b className={classNames({ ["selectableTitle"]: selectable })}>
-            {name}
-          </b>
+          <b className={classNames({ selectableTitle: selectable })}>{name}</b>
           <span className="pokemonInfo">{`#${id}`}</span>
         </div>
         {!selectable && (

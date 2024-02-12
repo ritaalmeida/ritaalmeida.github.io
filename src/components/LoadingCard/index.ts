@@ -1,3 +1,3 @@
-import { LoadingCard } from "./LoadingCard";
+import { LoadingCard } from './LoadingCard';
 
-export { LoadingCard };
+export default LoadingCard;

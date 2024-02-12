@@ -1,16 +1,16 @@
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { Pokedex } from "./components/Pokedex";
-import "./App.css";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Pokedex from './components/Pokedex';
+import './App.css';
 
 const queryClient = new QueryClient();
 
 const client = new ApolloClient({
-  uri: "https://beta.pokeapi.co/graphql/v1beta",
+  uri: 'https://beta.pokeapi.co/graphql/v1beta',
   cache: new InMemoryCache(),
 });
 
-function App() {
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ApolloProvider client={client}>
@@ -18,6 +18,6 @@ function App() {
       </ApolloProvider>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

@@ -1,4 +1,4 @@
-import { PokemonClient } from "pokenode-ts";
+import { PokemonClient } from 'pokenode-ts';
 
 const api = new PokemonClient();
 
@@ -7,3 +7,5 @@ export const getPokemonById = async (id: number) => {
 
   return data;
 };
+
+export default getPokemonById;

@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import "./Card.css";
+import classNames from 'classnames';
+import './Card.css';
 
 interface CardProps {
   onClick?: () => void;
@@ -17,11 +17,12 @@ export const Card = ({
   return (
     <button
       onClick={onClick}
-      className={classNames("card", {
-        ["loading"]: isLoading,
-        ["selectableCard"]: selectable,
-        ["enlarge"]: !selectable && !isLoading,
-        ["reduce"]: selectable && !isLoading,
+      type="button"
+      className={classNames('card', {
+        loading: isLoading,
+        selectableCard: selectable,
+        enlarge: !selectable && !isLoading,
+        reduce: selectable && !isLoading,
       })}
     >
       {children}

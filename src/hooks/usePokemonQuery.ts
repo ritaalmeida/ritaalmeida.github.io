@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
-import { GET_POKEMONS } from "../queries";
-import { PokemonType } from "../interfaces";
+import { useQuery } from '@apollo/client';
+import GET_POKEMONS from '../queries';
+import { PokemonType } from '../interfaces';
 
 interface PokemonData {
   id: number;

@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
-export const GET_POKEMONS = gql`
+const GET_POKEMONS = gql`
   query samplePokeAPIquery($name: String) {
     pokemons: pokemon_v2_pokemonsprites(
       where: {
@@ -21,3 +21,5 @@ export const GET_POKEMONS = gql`
     }
   }
 `;
+
+export default GET_POKEMONS;

@@ -1,3 +1,3 @@
-import { SearchList } from "./SearchList";
+import { SearchList } from './SearchList';
 
-export { SearchList };
+export default SearchList;

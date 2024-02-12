@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import Skeleton from "react-loading-skeleton";
-import "./LoadingCard.css";
-import "react-loading-skeleton/dist/skeleton.css";
-import Card from "../Card/Card";
+import Skeleton from 'react-loading-skeleton';
+import './LoadingCard.css';
+import 'react-loading-skeleton/dist/skeleton.css';
+import Card from '../Card';
 
 export const LoadingCard = ({ selectable }: { selectable: boolean }) => (
   <Card selectable={selectable} isLoading>
@@ -13,3 +12,5 @@ export const LoadingCard = ({ selectable }: { selectable: boolean }) => (
     </div>
   </Card>
 );
+
+export default LoadingCard;
