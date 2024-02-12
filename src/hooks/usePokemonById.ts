@@ -1,15 +1,7 @@
-import { useQueries } from "react-query";
+import { useQueries, useQuery } from "react-query";
 import { getPokemonById } from "../api/service";
 
-const usePokemonById = ({ ids }: { ids: number[] }) => {
-  const results = useQueries(
-    ids?.map((id) => ({
-      queryKey: ["pokemon", id],
-      queryFn: () => getPokemonById(id),
-    }))
-  );
-
-  return results;
-};
+const usePokemonById = ({ id }: { id: number }) =>
+  useQuery(["pokemon", id], () => getPokemonById(id));
 
 export default usePokemonById;

@@ -8,7 +8,7 @@ import {
 import "./SearchList.css";
 import { Pokemon } from "../../interfaces";
 
-interface SearchListProps {
+export interface SearchListProps {
   searchText: string;
   setSearchText: Dispatch<SetStateAction<string>>;
   pokemons?: Pokemon[];
@@ -35,30 +35,33 @@ export const SearchList = ({
   };
 
   return (
-    <>
+    <div className="searchList">
       <input
         type="text"
         className="searchInput"
-        value={searchText}
-        onChange={handleInputChange}
         placeholder="Search for pokemons"
         title="Type in a name"
+        onChange={handleInputChange}
+        value={searchText}
       />
-      <ul className="list">
-        {pokemons?.map((pokemon: Pokemon) => (
-          <li key={`pokemon-${pokemon.id}`}>
-            <div
-              role="menuitem"
-              onClick={() => handleSelectPokemon(pokemon.id)}
-            >
-              <div className="pokemonItem">
-                <span>{pokemon.name}</span>
-                <span className="pokemonInfo">{`#${pokemon.id}`}</span>
+      {pokemons && (
+        <ul className="list">
+          {pokemons?.map((pokemon: Pokemon) => (
+            <li key={`pokemon-${pokemon.id}`}>
+              <div
+                role="menuitem"
+                className="menuItem"
+                onClick={() => handleSelectPokemon(pokemon.id)}
+              >
+                <div className="pokemonItem">
+                  <span>{pokemon.name}</span>
+                  <span className="pokemonItemInfo">{`#${pokemon.id}`}</span>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };

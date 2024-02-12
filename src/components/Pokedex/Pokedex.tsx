@@ -5,15 +5,15 @@ import { PokemonCard } from "../PokemonCard";
 import { LoadingCard } from "../LoadingCard";
 import logo from "../../assets/logo.png";
 import "./Pokedex.css";
+import { v4 as uuidv4 } from "uuid";
 
 export const Pokedex = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedPokemon, setSelectedPokemon] = useState<number>();
   const [requestIds, setRequestIds] = useState<number[]>([]);
+  const [action, setAction] = useState<"previous" | "next">();
 
   const { data } = usePokemonQuery(searchText);
-
-  const pokemons = usePokemonById({ ids: requestIds });
 
   const handleSelectPokemon = (id: number) => {
     setSearchText("");
@@ -29,38 +29,40 @@ export const Pokedex = () => {
     }
   }, [selectedPokemon]);
 
-  const handleClick = (action: string) => {
-    if (action === "next") {
-      setSelectedPokemon((selectedPokemon as number) + 1);
-    } else {
-      setSelectedPokemon((selectedPokemon as number) - 1);
+  const handleClick = (index: number) => {
+    const action = index === 0 ? "previous" : "next";
+    if (index !== 1) setAction(action);
+
+    if (action?.length) {
+      if (action === "next") {
+        setSelectedPokemon((selectedPokemon as number) + 1);
+      } else {
+        setSelectedPokemon((selectedPokemon as number) - 1);
+      }
     }
   };
 
   return (
     <div className="pokedex">
-      <img src={logo} className="logo" alt="pokemon" />
-      <SearchList
-        searchText={searchText}
-        setSearchText={setSearchText}
-        pokemons={data}
-        handleSelectPokemon={handleSelectPokemon}
-      />
-      <div className="pokemonsSection">
-        {pokemons &&
-          pokemons.map(({ data, status }, index) =>
-            status !== "success" ? (
-              <LoadingCard small={index !== 1} />
-            ) : (
+      <div className="search">
+        <img src={logo} className="logo" alt="pokemon" />
+        <SearchList
+          searchText={searchText}
+          setSearchText={setSearchText}
+          pokemons={data}
+          handleSelectPokemon={handleSelectPokemon}
+        />
+        <div className="pokemonsSection">
+          {requestIds &&
+            requestIds.map((id, index) => (
               <PokemonCard
-                pokemon={data}
-                selectable={index !== 1}
-                handleClick={() =>
-                  handleClick(index === 0 ? "previous" : "next")
-                }
+                pokemonId={id}
+                slideIndex={index}
+                handleClick={() => handleClick(index)}
+                action={action}
               />
-            )
-          )}
+            ))}
+        </div>
       </div>
     </div>
   );

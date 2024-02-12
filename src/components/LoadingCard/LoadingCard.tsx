@@ -1,12 +1,15 @@
 import classNames from "classnames";
 import Skeleton from "react-loading-skeleton";
+import "./LoadingCard.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import Card from "../Card/Card";
 
-export const LoadingCard = ({ small }: { small: boolean }) => (
-  <div className={classNames("card", { ["smallCard"]: small })}>
-    <Skeleton height={small ? 145 : 200} borderRadius={15} />
-    <div className="container">
-      <Skeleton />
-      {!small && <Skeleton width={50} />}
+export const LoadingCard = ({ selectable }: { selectable: boolean }) => (
+  <Card selectable={selectable} isLoading>
+    <Skeleton borderRadius={15} containerClassName="imageLoader" />
+    <div className="containerLoader">
+      <Skeleton containerClassName="titleLoader" />
+      {!selectable && <Skeleton width={50} />}
     </div>
-  </div>
+  </Card>
 );
