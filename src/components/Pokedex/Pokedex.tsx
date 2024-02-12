@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { usePokemonQuery } from '../../hooks';
 import SearchList from '../SearchList';
 import PokemonCard from '../PokemonCard';
 import logo from '../../assets/logo.png';
 import './Pokedex.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Pokedex = () => {
   const [searchText, setSearchText] = useState('');
   const [selectedPokemon, setSelectedPokemon] = useState<number>();
   const [requestIds, setRequestIds] = useState<number[]>([]);
 
-  const { data } = usePokemonQuery(searchText);
+  const { data, error } = usePokemonQuery(searchText);
 
-  const handleSelectPokemon = (id: number) => {
-    setSearchText('');
-    setSelectedPokemon(id);
-  };
+  useEffect(() => {
+    if (error) {
+      toast.error('Something went wrong, please try again in a few minutes!', {
+        position: 'bottom-right',
+        toastId: 'error',
+      });
+    }
+  }, [error]);
 
   useEffect(() => {
     if (selectedPokemon) {
@@ -25,6 +31,11 @@ export const Pokedex = () => {
       setRequestIds([previousId, selectedPokemon, nextId]);
     }
   }, [selectedPokemon]);
+
+  const handleSelectPokemon = (id: number) => {
+    setSearchText('');
+    setSelectedPokemon(id);
+  };
 
   const handleClick = (index: number) => {
     const action = index === 0 ? 'previous' : 'next';
@@ -60,6 +71,7 @@ export const Pokedex = () => {
             ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

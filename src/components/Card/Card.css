@@ -11,18 +11,22 @@
   width: var(--card-width);
 }
 
+.loading {
+  cursor: default;
+}
+
 .selectableCard {
   cursor: pointer;
   height: var(--card-small-height);
   width: var(--card-small-width);
 }
 
-.loading {
-  cursor: default;
-}
-
 .selectableCard:hover:not(.loading) {
   box-shadow: var(--card-box-shadow);
+}
+
+.hideCard {
+  display: none;
 }
 
 @media only screen and (max-width: 900px) {

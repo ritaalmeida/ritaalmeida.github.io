@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import './PokemonCard.css';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { usePokemonById } from '../../hooks';
 import LoadingCard from '../LoadingCard';
 import Card from '../Card';
@@ -15,7 +17,16 @@ export const PokemonCard = ({
   handleClick,
   slideIndex,
 }: PokemonCardProps) => {
-  const { data: pokemon, isLoading } = usePokemonById({ id: pokemonId });
+  const { data: pokemon, isLoading, error } = usePokemonById({ id: pokemonId });
+
+  useEffect(() => {
+    if (error && error.response?.status !== 404) {
+      toast.error('Something went wrong, please try again in a few minutes!', {
+        position: 'bottom-right',
+        toastId: 'error',
+      });
+    }
+  }, [error]);
 
   const { id, sprites, name, types } = pokemon || {};
   const selectable = slideIndex !== 1;
@@ -25,7 +36,11 @@ export const PokemonCard = ({
   }
 
   return (
-    <Card onClick={handleClick} selectable={slideIndex !== 1}>
+    <Card
+      onClick={handleClick}
+      selectable={slideIndex !== 1}
+      hide={error?.response?.status === 404}
+    >
       <img
         className={classNames('cardImage', {
           cardImageSelectable: selectable,

@@ -6,6 +6,7 @@ interface CardProps {
   selectable?: boolean;
   children: React.ReactNode;
   isLoading?: boolean;
+  hide?: boolean;
 }
 
 export const Card = ({
@@ -13,6 +14,7 @@ export const Card = ({
   selectable,
   children,
   isLoading = false,
+  hide = false,
 }: CardProps) => {
   return (
     <button
@@ -23,6 +25,7 @@ export const Card = ({
         selectableCard: selectable,
         enlarge: !selectable && !isLoading,
         reduce: selectable && !isLoading,
+        hideCard: hide,
       })}
     >
       {children}
