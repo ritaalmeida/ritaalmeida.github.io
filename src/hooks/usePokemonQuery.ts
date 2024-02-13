@@ -17,12 +17,12 @@ export interface PokemonGet {
 
 const usePokemonQuery = (searchText: string) => {
   const { data, ...queryResult } = useQuery<PokemonGet>(GET_POKEMONS, {
-    variables: { name: searchText },
+    variables: { name: searchText.toLowerCase() },
     skip: searchText.length < 3,
   });
 
   return {
-    data: data?.pokemons.map((pokemon) => ({
+    data: data?.pokemons.map((pokemon: PokemonData) => ({
       name: pokemon.pokemon_v2_pokemon.name,
       id: pokemon.id,
       sprite: pokemon.sprites,
