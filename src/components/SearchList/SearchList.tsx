@@ -47,16 +47,15 @@ export const SearchList = ({
       {pokemons && (
         <ul className="list">
           {pokemons?.map((pokemon: Pokemon) => (
-            <li key={`pokemon-${pokemon.id}`}>
-              <div
-                role="menuitem"
-                className="menuItem"
-                onClick={() => handleSelectPokemon(pokemon.id)}
-              >
-                <div className="pokemonItem">
-                  <span>{pokemon.name}</span>
-                  <span className="pokemonItemInfo">{`#${pokemon.id}`}</span>
-                </div>
+            <li
+              key={`pokemon-${pokemon.id}`}
+              className="menuItem"
+              onClick={() => handleSelectPokemon(pokemon.id)}
+              role="menuitem"
+            >
+              <div className="pokemonItem">
+                <span>{pokemon.name}</span>
+                <span className="pokemonItemInfo">{`#${pokemon.id}`}</span>
               </div>
             </li>
           ))}

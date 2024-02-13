@@ -40,13 +40,12 @@ export const Pokedex = () => {
   const handleClick = (index: number) => {
     const action = index === 0 ? 'previous' : 'next';
 
-    if (index !== 1) {
-      if (action === 'next') {
-        setSelectedPokemon((selectedPokemon as number) + 1);
-      } else {
-        setSelectedPokemon((selectedPokemon as number) - 1);
-      }
-    }
+    const newSelectedPokemonId =
+      action === 'next'
+        ? (selectedPokemon as number) + 1
+        : (selectedPokemon as number) - 1;
+
+    setSelectedPokemon(newSelectedPokemonId);
   };
 
   return (

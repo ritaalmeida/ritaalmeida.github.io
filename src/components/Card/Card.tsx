@@ -15,22 +15,21 @@ export const Card = ({
   children,
   isLoading = false,
   hide = false,
-}: CardProps) => {
-  return (
-    <button
-      onClick={onClick}
-      type="button"
-      className={classNames('card', {
-        loading: isLoading,
-        selectableCard: selectable,
-        enlarge: !selectable && !isLoading,
-        reduce: selectable && !isLoading,
-        hideCard: hide,
-      })}
-    >
-      {children}
-    </button>
-  );
-};
+}: CardProps) => (
+  <button
+    onClick={onClick}
+    type="button"
+    className={classNames('card', {
+      loading: isLoading,
+      selectableCard: selectable,
+      enlarge: !selectable && !isLoading,
+      reduce: selectable && !isLoading,
+      hideCard: hide,
+    })}
+    disabled={!selectable}
+  >
+    {children}
+  </button>
+);
 
 export default Card;

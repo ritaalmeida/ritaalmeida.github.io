@@ -28,9 +28,12 @@ describe('Pokedex', () => {
     cy.get('li:nth-of-type(1) > div').click();
 
     cy.get('button:nth-of-type(3) span').then(($nextValue) => {
+      cy.get('button:nth-of-type(3) > img').should('be.visible');
+
       [, nextPokemon] = $nextValue.text().split('#');
       cy.get('button:nth-of-type(3) > img').click();
 
+      cy.get('button.enlarge > img').should('be.visible');
       cy.get('button.enlarge div.title > span').should(
         'have.text',
         `#${nextPokemon}`,
@@ -50,9 +53,12 @@ describe('Pokedex', () => {
     cy.get('li:nth-of-type(1) > div').click();
 
     cy.get('button:nth-of-type(1) span').then(($previousValue) => {
+      cy.get('button:nth-of-type(1) > img').should('be.visible');
+
       [, previousPokemon] = $previousValue.text().split('#');
       cy.get('button:nth-of-type(1) > img').click();
 
+      cy.get('button.enlarge > img').should('be.visible');
       cy.get('button.enlarge div.title > span').should(
         'have.text',
         `#${previousPokemon}`,
